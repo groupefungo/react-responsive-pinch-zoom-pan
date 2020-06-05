@@ -1,5 +1,5 @@
 {
-  "name": "fungo-react-responsive-pinch-zoom-pan",
+  "name": "@groupefungo/react-responsive-pinch-zoom-pan",
   "version": "1.0.0",
   "description": "Enables zooming and panning an image, both mobile and desktop.",
   "main": "dist/PinchZoomPan.js",
