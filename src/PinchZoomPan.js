@@ -95,17 +95,23 @@ export default class PinchZoomPan extends React.Component {
   isImageLoaded; //permits initial transform
   originalOverscrollBehaviorY; //saves the original overscroll-behavior-y value while temporarily preventing pull down refresh
 
-  keyPressed = (event) => {
-    return event.ctrlKey;
+  isManipulable = (event) => {
+    let multiTouch = false
+    if (event.touches) {
+      const {touches} = event;
+      multiTouch = touches.length === 2;
+    }
+    return event.ctrlKey || multiTouch;
   }
 
   //event handlers
   handleTouchStart = event => {
-    if (this.keyPressed(event)) {
+    if (this.isManipulable(event)) {
       this.cancelAnimation();
       const touches = event.touches;
       if (touches.length === 2) {
         this.lastPinchLength = getPinchLength(touches);
+
         this.lastPanPointerPosition = null;
       } else if (touches.length === 1) {
         this.lastPinchLength = null;
@@ -116,7 +122,7 @@ export default class PinchZoomPan extends React.Component {
   }
 
   handleTouchMove = event => {
-    if (this.keyPressed(event)) {
+    if (this.isManipulable(event)) {
       const touches = event.touches;
       if (touches.length === 2) {
         this.pinchChange(touches);
@@ -158,7 +164,7 @@ export default class PinchZoomPan extends React.Component {
   }
 
   handleTouchEnd = event => {
-    if (this.keyPressed(event)) {
+    if (this.isManipulable(event)) {
       this.cancelAnimation();
       if (event.touches.length === 0 && event.changedTouches.length === 1) {
         if (this.lastPointerUpTimeStamp && this.lastPointerUpTimeStamp + DOUBLE_TAP_THRESHOLD > event.timeStamp) {
@@ -177,21 +183,21 @@ export default class PinchZoomPan extends React.Component {
   }
 
   handleMouseDown = event => {
-    if (this.keyPressed(event)) {
+    if (this.isManipulable(event)) {
       this.cancelAnimation();
       this.pointerDown(event);
     }
   }
 
   handleMouseMove = event => {
-    if (this.keyPressed(event)) {
+    if (this.isManipulable(event)) {
       if (!event.buttons) return null;
       this.pan(event)
     }
   }
 
   handleMouseDoubleClick = event => {
-    if (this.keyPressed(event)) {
+    if (this.isManipulable(event)) {
       this.cancelAnimation();
       var pointerPosition = getRelativePosition(event, this.imageRef.parentNode);
       this.doubleClick(pointerPosition);
@@ -199,7 +205,7 @@ export default class PinchZoomPan extends React.Component {
   }
 
   handleMouseWheel = event => {
-    if (this.keyPressed(event)) {
+    if (this.isManipulable(event)) {
 
       this.cancelAnimation();
       const point = getRelativePosition(event, this.imageRef.parentNode);
