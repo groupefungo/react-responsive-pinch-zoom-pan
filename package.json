@@ -1,6 +1,6 @@
 {
   "name": "@groupefungo/react-responsive-pinch-zoom-pan",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "Enables zooming and panning an image, both mobile and desktop.",
   "main": "dist/PinchZoomPan.js",
   "scripts": {
@@ -36,6 +36,12 @@
     "babel-jest": "23.6.0",
     "babel-loader": "8.0.4",
     "css-loader": "1.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.21.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
     "file-loader": "2.0.0",
     "gh-pages": "^2.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
@@ -45,8 +51,8 @@
     "style-loader": "0.23.0",
     "url-loader": "1.1.1",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "3.1.14"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
   },
   "author": "Brad Stiff",
   "repository": {
@@ -60,6 +66,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.13",
     "@fortawesome/free-solid-svg-icons": "^5.7.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "prop-types": "^15.7.2",
     "reselect": "^4.0.0",
     "warning": "^4.0.2"
   },
